@@ -1,0 +1,12 @@
+.container
+    %h1= @representative.name
+
+    -# Representative Details
+    %ul.list-group
+        %li.list-group-item
+            %strong OCD ID:
+            = @representative.id
+        %li.list-group-item
+            %strong Office: President
+
+    = link_to 'Back to List', representatives_path, class: 'btn btn-secondary'
