@@ -11,6 +11,5 @@ end
 
 Then('they should see the representative\'s profile details') do
   expect(page).to have_content(@representative.name)
-  expect(page).to have_content(@representative.id)
-  expect(page).to have_content('President')
+  expect(page).to have_content(@representative.ocdid)
 end

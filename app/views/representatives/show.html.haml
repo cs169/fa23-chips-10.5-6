@@ -1,12 +1,16 @@
-.container
-    %h1= @representative.name
-
-    -# Representative Details
-    %ul.list-group
-        %li.list-group-item
-            %strong OCD ID:
-            = @representative.id
-        %li.list-group-item
-            %strong Office: President
-
-    = link_to 'Back to List', representatives_path, class: 'btn btn-secondary'
+.row.mt-2
+    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        %h3.text-center Representative Information
+        .card-body
+            .card-text
+                %dl.row
+                    %dt.col-sm-3.text-md-right Name:
+                    %dt.col-sm-9
+                        = @representative.name
+                %dl.row
+                    %dt.col-sm-3.text-md-right OCD ID:
+                    %dt.col-sm-9
+                        = @representative.ocdid
+                %dl.row
+                    %dt.col-sm-4
+                    = link_to 'Back', :back, class: 'btn btn-secondary'
