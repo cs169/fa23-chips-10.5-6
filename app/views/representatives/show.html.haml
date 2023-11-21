@@ -1,0 +1,28 @@
+.row.mt-2
+    .col-12.col-md-6.offset-md-3.col-xl-4.offset-xl-4
+        %h3.text-center= Representative Information
+        .card-body
+            .card-text
+		        %dl.row
+                    %dt.col-sm-3.text-md-right Party:
+                    %dt.col-sm-9
+                        = @representative.party
+                %dl.row
+                    %dt.col-sm-3.text-md-right Address:
+                    %dt.col-sm-9
+                        = @representative.address
+                %dl.row
+                    %dt.col-sm-3.text-md-right City:
+                    %dt.col-sm-9
+                        = @representative.city
+                %dl.row
+                    %dt.col-sm-3.text-md-right State:
+                    %dt.col-sm-9
+                        = @representative.state
+                %dl.row
+                    %dt.col-sm-3.text-md-right Zip Code:
+                    %dt.col-sm-9
+                        = @representative.zip
+                %dl.row
+                    %dt.col-sm-3.text-md-right Photo:
+                    %img{ src: @representative.photo_url }
