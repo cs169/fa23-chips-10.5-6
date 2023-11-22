@@ -14,9 +14,10 @@ RSpec.describe Representative, type: :model do
       double(
         'RepInfo',
         officials: [
-          double('Official', name: 'Gavin Newsom', address: nil, party: nil),
-          double('Official', name: 'Alexandria Ocasio-Cortez', address: nil, party: nil),
-          double('Official', name: 'New Representative', address: nil, party: nil)
+          double('Official', name: 'Gavin Newsom', address: nil, party: 'party1'),
+          double('Official', name: 'Alexandria Ocasio-Cortez', address: nil, party: 'party2'),
+          double('Official', name: 'New Representative',
+address: [double(line1: 'Example Street', state: 'CA', zip: '94704', city: 'Berkeley')], party: nil)
         ],
         offices:   [
           double('Office', name: 'Governor', division_id: 'some-ocdid-1', official_indices: [0]),
@@ -32,6 +33,14 @@ RSpec.describe Representative, type: :model do
 
       expect(described_class.find_by(name: 'Gavin Newsom').title).to eq('Governor')
       expect(described_class.find_by(name: 'Alexandria Ocasio-Cortez').title).to eq('Congresswoman')
+    end
+
+    it 'instantiates additional properties for a representative if applicable' do
+      described_class.civic_api_to_representative_params(new_rep_info)
+      expect(described_class.find_by(name: 'New Representative').city).to eq('Berkeley')
+      expect(described_class.find_by(name: 'New Representative').state).to eq('CA')
+      expect(described_class.find_by(name: 'New Representative').zip).to eq('94704')
+      expect(described_class.find_by(name: 'New Representative').address).to eq('Example Street')
     end
   end
 end
