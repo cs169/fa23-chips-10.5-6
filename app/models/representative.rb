@@ -21,7 +21,9 @@ class Representative < ApplicationRecord
         if office.official_indices.include? index
           title_temp = office.name
           ocdid_temp = office.division_id
-          # photo_url_temp = official.photo_url
+          if official.instance_variable_defined?(:@photo_url)
+            photo_url_temp = official.photo_url
+          end
           unless official.address.nil?
             street_temp = official.address[0].line1
             city_temp = official.address[0].city
