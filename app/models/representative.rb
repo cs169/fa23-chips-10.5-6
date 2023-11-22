@@ -34,9 +34,9 @@ class Representative < ApplicationRecord
       
       representative = Representative.find_or_initialize_by(name: official.name, ocdid: ocdid_temp)
       if representative.nil?
-        representative = Representative.create(name: official.name, ocdid: ocdid_temp, party: party_temp)
+        representative = Representative.create(name: official.name, ocdid: ocdid_temp, party: party_temp, photo_url: photo_url_temp, zip: zip, address: address_temp, city: city_temp, state: state_temp)
       else
-        representative = Representative.update(party: party_temp)
+        representative = Representative.update(party: party_temp, photo_url: photo_url_temp, zip: zip, address: address_temp, city: city_temp, state: state_temp)
       end
       next unless rep.new_record?
 
