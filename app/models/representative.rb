@@ -30,6 +30,7 @@ class Representative < ApplicationRecord
         end
         party_temp = official.party
       end
+
       @representative = Representative.find_or_initialize_by(name: official.name, ocdid: ocdid_temp)
       next unless rep.new_record?
 
@@ -42,6 +43,7 @@ class Representative < ApplicationRecord
       @representative.title = title_temp
       @representative.save!
       reps.push(@representative)
+
     end
     reps
   end
