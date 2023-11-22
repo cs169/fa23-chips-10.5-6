@@ -38,7 +38,7 @@
                 %dl.row
                     %dt.col-sm-3.text-md-right Photo:
                     %dt.col-sm-4
-                        - if @representative.photo_url.nil? || @representative.photo_url.empty?
+                        - if @representative.photo_url.blank?
                             Photo not found
                         - else
                             %img{ src: @representative.photo_url }
