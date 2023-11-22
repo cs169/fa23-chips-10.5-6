@@ -16,11 +16,12 @@ class Representative < ApplicationRecord
       party_temp = ''
       photo_url_temp = ''
 
+
       rep_info.offices.each do |office|
         if office.official_indices.include? index
           title_temp = office.name
           ocdid_temp = office.division_id
-          photo_url_temp = official.photoUrl
+          photo_url_temp = official.photo_url
           unless official.address.nil?
             city_temp = official.address[0].city
             state_temp = official.address[0].state
@@ -29,13 +30,18 @@ class Representative < ApplicationRecord
         end
         party_temp = official.party
       end
-
-      rep = Representative.find_or_initialize_by(name: official.name, ocdid: ocdid_temp)
+      @representative = Representative.find_or_initialize_by(name: official.name, ocdid: ocdid_temp)
       next unless rep.new_record?
 
-      rep.title = title_temp
-      rep.save!
-      reps.push(rep)
+      if party_temp.nil?
+        @representative.party = ''
+      else
+        @representative.party = party_temp
+      end
+
+      @representative.title = title_temp
+      @representative.save!
+      reps.push(@representative)
     end
     reps
   end
