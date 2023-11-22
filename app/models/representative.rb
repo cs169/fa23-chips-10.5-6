@@ -34,11 +34,8 @@ class Representative < ApplicationRecord
       @representative = Representative.find_or_initialize_by(name: official.name, ocdid: ocdid_temp)
       next unless rep.new_record?
 
-      if party_temp.nil?
-        @representative.party = ''
-      else
-        @representative.party = party_temp
-      end
+      @representative.party = party_temp
+
 
       @representative.title = title_temp
       @representative.save!
