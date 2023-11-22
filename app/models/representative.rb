@@ -31,15 +31,18 @@ class Representative < ApplicationRecord
         party_temp = official.party
       end
 
-      @representative = Representative.find_or_initialize_by(name: official.name, ocdid: ocdid_temp)
+      
+      representative = Representative.find_or_initialize_by(name: official.name, ocdid: ocdid_temp)
+      if representative.nil?
+        representative = Representative.create(name: official.name, ocdid: ocdid_temp, party: party_temp)
+      else
+        representative = Representative.update(party: party_temp)
+      end
       next unless rep.new_record?
 
-      @representative.party = party_temp
-
-
-      @representative.title = title_temp
-      @representative.save!
-      reps.push(@representative)
+      representative.title = title_temp
+      representative.save!
+      reps.push(representative)
 
     end
     reps
