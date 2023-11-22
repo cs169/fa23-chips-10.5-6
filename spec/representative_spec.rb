@@ -14,9 +14,9 @@ RSpec.describe Representative, type: :model do
       double(
         'RepInfo',
         officials: [
-          double('Official', name: 'Gavin Newsom'),
-          double('Official', name: 'Alexandria Ocasio-Cortez'),
-          double('Official', name: 'New Representative')
+          double('Official', name: 'Gavin Newsom', address: nil, party: nil),
+          double('Official', name: 'Alexandria Ocasio-Cortez', address: nil, party: nil),
+          double('Official', name: 'New Representative', address: nil, party: nil)
         ],
         offices:   [
           double('Office', name: 'Governor', division_id: 'some-ocdid-1', official_indices: [0]),

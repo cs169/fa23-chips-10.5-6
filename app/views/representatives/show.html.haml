@@ -8,9 +8,36 @@
                     %dt.col-sm-9
                         = @representative.name
                 %dl.row
-                    %dt.col-sm-3.text-md-right OCD ID:
+                    %dt.col-sm-3.text-md-right Title:
+                    %dt.col-sm-9
+                        = @representative.title
+                %dl.row
+                    %dt.col-sm-3.text-md-right Party:
+                    %dt.col-sm-9
+                        = @representative.party
+                %dl.row
+                    %dt.col-sm-3.text-md-right OCD-ID:
                     %dt.col-sm-9
                         = @representative.ocdid
+                %dl.row
+                    %dt.col-sm-3.text-md-right Address:
+                    %dt.col-sm-9
+                        = @representative.address
+                %dl.row
+                    %dt.col-sm-3.text-md-right City:
+                    %dt.col-sm-9
+                        = @representative.city
+                %dl.row
+                    %dt.col-sm-3.text-md-right State:
+                    %dt.col-sm-9
+                        = @representative.state
+                %dl.row
+                    %dt.col-sm-3.text-md-right Zip Code:
+                    %dt.col-sm-9
+                        = @representative.zip
+                %dl.row
+                    %dt.col-sm-4
+                    %img{ src: @representative.photo_url }
                 %dl.row
                     %dt.col-sm-4
                     = link_to 'Back', :back, class: 'btn btn-secondary'
