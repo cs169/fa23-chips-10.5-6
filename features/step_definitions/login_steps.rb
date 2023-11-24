@@ -3,32 +3,27 @@
 When(/^I sign in with (.+)$/) do |auth_provider|
   OmniAuth.config.test_mode = true
 
+  auth_config = {
+    'provider' => '',
+    'uid'      => '12345',
+    'info'     => {
+      'name'  => 'Test User',
+      'email' => 'test@example.com'
+    }
+  }
+  auth = ''
+
   case auth_provider
   when 'Google'
-    OmniAuth.config.mock_auth[:google_oauth2] = {
-      'provider' => 'google_oauth2',
-      'uid'      => '12345',
-      'info'     => {
-        'name'  => 'Test User',
-        'email' => 'test@example.com'
-      }
-    }
-    click_button 'Sign in with Google'
-
+    auth = 'google_oauth2'
   when 'GitHub'
-    OmniAuth.config.mock_auth[:github] = {
-      'provider' => 'github',
-      'uid'      => '12345',
-      'info'     => {
-        'name'  => 'Test User',
-        'email' => 'test@example.com'
-      }
-    }
-    click_button 'Sign in with GitHub'
-
+    auth = 'github'
   else
     raise "Unsupported authentication provider: #{auth_provider}"
   end
+  auth_config[:provider] = auth
+  OmniAuth.config.mock_auth[auth.to_sym] = auth_config
+  click_button "Sign in with #{auth_provider}"
 end
 
 Then('I should be redirected to the home page') do
