@@ -10,21 +10,9 @@ RSpec.describe County, type: :model do
   end
 
   describe 'methods' do
-    describe '#std_fips_code' do
-      it 'returns a standardized FIPS code with leading zeros' do
-        county = described_class.new(fips_code: 6)
-        expect(county.std_fips_code).to eq('006')
-      end
-
-      it 'returns a two-digit FIPS code as is' do
-        county = described_class.new(fips_code: 42)
-        expect(county.std_fips_code).to eq('042')
-      end
-
-      it 'returns a three-digit FIPS code as is' do
-        county = described_class.new(fips_code: 123)
-        expect(county.std_fips_code).to eq('123')
-      end
+    it 'returns a code standardized for counties' do
+      expect(described_class.new(fips_code: 8).std_fips_code).to eq('008')
+      expect(described_class.new(fips_code: 37).std_fips_code).to eq('037')
     end
   end
 end

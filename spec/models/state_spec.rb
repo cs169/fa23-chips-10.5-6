@@ -11,19 +11,10 @@ RSpec.describe State, type: :model do
 
   describe 'methods' do
     describe '#std_fips_code' do
-      it 'returns a standardized FIPS code with leading zeros' do
-        state = described_class.new(fips_code: 6)
-        expect(state.std_fips_code).to eq('06')
-      end
-
-      it 'returns a two-digit FIPS code as is' do
-        state = described_class.new(fips_code: 42)
-        expect(state.std_fips_code).to eq('42')
-      end
-
-      it 'returns a three-digit FIPS code as is' do
-        state = described_class.new(fips_code: 123)
-        expect(state.std_fips_code).to eq('123')
+      it 'returns a standardized fips code' do
+        expect(described_class.new(fips_code: 6).std_fips_code).to eq('06')
+        expect(described_class.new(fips_code: 42).std_fips_code).to eq('42')
+        expect(described_class.new(fips_code: 123).std_fips_code).to eq('123')
       end
     end
   end
