@@ -37,20 +37,22 @@ RSpec.describe LoginController, type: :controller do
   end
 
   describe '#create_github_user' do
-    it 'creates a GitHub user with valid user_info' do
-      user_info = { 'uid' => '123456', 'info' => { 'name' => 'John Doe', 'email' => 'john.doe@example.com' } }
-      allow(User).to receive(:create)
-      controller.send(:create_github_user, user_info)
-      expect(User).to have_received(:create).with(uid: '123456', provider: User.providers[:github],
-                                                  first_name: 'John', last_name: 'Doe', email: 'john.doe@example.com')
+    shared_examples 'creates a GitHub user' do |user_info, expected_params|
+      it 'creates a GitHub user with valid user_info' do
+        allow(User).to receive(:create)
+        controller.send(:create_github_user, user_info)
+        expect(User).to have_received(:create).with(expected_params)
+      end
     end
 
-    it 'creates a GitHub user with default values for name when name is nil' do
-      user_info = { 'uid' => '789012', 'info' => { 'name' => nil, 'email' => 'anon.user@example.com' } }
-      allow(User).to receive(:create)
-      controller.send(:create_github_user, user_info)
-      expect(User).to have_received(:create).with(uid: '789012', provider: User.providers[:github],
-                                                  first_name: 'Anon', last_name: 'User', email: 'anon.user@example.com')
-    end
+    it_behaves_like 'creates a GitHub user',
+                    { 'uid' => '123456', 'info' => { 'name' => 'John Doe', 'email' => 'john.doe@example.com' } },
+                    { uid: '123456', provider: User.providers[:github], first_name: 'John', last_name: 'Doe',
+email: 'john.doe@example.com' }
+
+    it_behaves_like 'creates a GitHub user',
+                    { 'uid' => '789012', 'info' => { 'name' => nil, 'email' => 'anon.user@example.com' } },
+                    { uid: '789012', provider: User.providers[:github], first_name: 'Anon', last_name: 'User',
+email: 'anon.user@example.com' }
   end
 end

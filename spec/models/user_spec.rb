@@ -19,20 +19,22 @@ RSpec.describe User, type: :model do
       end
     end
 
-    describe '.find_google_user' do
-      it 'finds a user by UID for Google provider' do
-        google_user = described_class.create(provider: :google_oauth2, uid: '123')
-        found_user = described_class.find_google_user('123')
-        expect(found_user).to eq(google_user)
+    describe 'find_user_by_provider_and_uid' do
+      shared_examples 'finds a user by UID for a provider' do |provider|
+        provider_map = {
+          google: { provider: :google_oauth2 },
+          github: { provider: :github }
+        }
+        it "finds a user by UID for #{provider} provider" do
+          user = described_class.create(provider_map[provider].merge(uid: '123')) ||
+                 (raise "Unsupported authentication provider: #{provider}")
+          found_user = described_class.send("find_#{provider}_user", '123')
+          expect(found_user).to eq(user)
+        end
       end
-    end
 
-    describe '.find_github_user' do
-      it 'finds a user by UID for GitHub provider' do
-        github_user = described_class.create(provider: :github, uid: '456')
-        found_user = described_class.find_github_user('456')
-        expect(found_user).to eq(github_user)
-      end
+      it_behaves_like 'finds a user by UID for a provider', :google
+      it_behaves_like 'finds a user by UID for a provider', :github
     end
   end
 end
