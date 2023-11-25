@@ -25,9 +25,11 @@ Rails.application.routes.draw do
     match '/my_events/:id', to: 'my_events#destroy', via: [:delete]
 
     # Routes for Representatives
+    get '/representatives/:representative_id', to: 'representatives#show', as: 'representative'
     resources :representatives, only: [:index]
     resources :representatives do
         resources :news_items, only: %i[index show]
+        get 'show'
         get '/representatives/:representative_id/my_news_item/new' => 'my_news_items#new',
             :as                                                    => :new_my_news_item
         match '/representatives/:representative_id/my_news_item/new', to:  'my_news_items#create',
