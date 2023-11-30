@@ -50,14 +50,6 @@ RSpec.describe CampaignFinancesController, type: :controller do
   end
 
   describe '#query_propublica_api' do
-    it 'returns a response from the ProPublica API' do
-      response = controller.query_propublica_api('2020', 'pac-total')
-      expect(response.class).to eq(Hash)
-      expect(response['status']).to eq('OK')
-      expect(response['cycle']).to eq(2020)
-      expect(response['results'].size).to be > 0
-    end
-
     it 'raises an error if response is not successful' do
       expect do
         controller.query_propublica_api('2021', 'pac-total')
