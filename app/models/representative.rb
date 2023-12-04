@@ -24,6 +24,8 @@ class Representative < ApplicationRecord
           photo_url_temp = official.photo_url if official.instance_variable_defined?(:@photo_url)
           unless official.address.nil?
             street_temp = official.address[0].line1
+            if street_temp.eql("St")
+              street_temp = "St. Louis County"
             city_temp = official.address[0].city
             state_temp = official.address[0].state
             zip_temp = official.address[0].zip
