@@ -21,6 +21,8 @@
                         %li.nav-item
                             = link_to 'Representatives', representatives_path, class: 'nav-link'
                         %li.nav-item
+                            = link_to 'Campaign Finance', campaign_finances_path, class: 'nav-link'
+                        %li.nav-item
                             = link_to 'Login', login_path, class: 'nav-link'
                 - if flash[:notice].present? || flash[:alert].present?
                     .row.my-4#actionmap-flash-container
