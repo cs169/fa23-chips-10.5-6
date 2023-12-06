@@ -20,3 +20,8 @@ Feature: Navbar functionality
     Given I am on the home page
     When I click the "Login" link
     Then I should be on the login page
+
+    Scenario: Clicking "Campaign Finances" link should redirect to the campaign finances page
+    Given I am on the home page
+    When I click the "Campaign Finances" link
+    Then I should be on the campaign finances page
