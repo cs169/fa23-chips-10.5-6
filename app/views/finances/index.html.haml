@@ -1,0 +1,29 @@
+%section.mt-4#campaign-finances-section
+  %h2.text-center Campaign Finances Search
+  .row.justify-content-center.my-4
+    .col-md-6
+      %form#campaign-finance-form{ action: "#", method: "get" }
+        .form-group
+          %label{ for: "cycle" } Select Cycle
+          %select.form-control#cycle
+            %option{ value: "2020" } 2020
+            %option{ value: "2018" } 2018
+            %option{ value: "2016" } 2016
+            %option{ value: "2014" } 2014
+            %option{ value: "2012" } 2012
+            %option{ value: "2010" } 2010
+
+        .form-group
+          %label{ for: "category" } Select Category
+          %select.form-control#category
+            %option{ value: "candidate-loan" } Candidate Loan
+            %option{ value: "contribution-total" } Contribution Total
+            %option{ value: "debts-owed" } Debts Owed
+            %option{ value: "disbursements-total" } Disbursements Total
+            %option{ value: "end-cash" } End Cash
+            %option{ value: "individual-total" } Individual Total
+            %option{ value: "pac-total" } PAC Total
+            %option{ value: "receipts-total" } Receipts Total
+            %option{ value: "refund-total" } Refund Total
+
+        %button.btn.btn-primary.mb-2{ type: "submit" } Search
