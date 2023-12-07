@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2023_11_29_205552) do
 
   create_table "news_items", force: :cascade do |t|
     t.string "title", null: false
-    t.string "issue", null: false
+    t.string "issue"
     t.string "link", null: false
     t.text "description"
     t.integer "representative_id", null: false
