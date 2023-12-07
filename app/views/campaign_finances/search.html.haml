@@ -1,3 +1,31 @@
 -# This is the view that will dispay the campaign finance search results
   campaign_finances#search makes available @campaign_finances which can be used
    to display the table of results
+
+-# This is the view that will have the drop-down menus for cycle and category
+  As well as the search button.
+  Searching should add a params[:cycle] and params[:category]
+  and should use the campaign_finances_search route
+  %h2.text-center Campaign Finances Search
+  .row.justify-content-center.my-4
+    .col-md-6
+      = form_tag campaign_finances_search_path, method: :get, id: 'campaign-finance-form' do
+        .form-group
+          = label_tag :cycle, 'Select Cycle'
+          = select_tag :cycle, options_for_select([2020, 2018, 2016, 2014, 2012, 2010].map { |year| [year, year] }), class: 'form-control'
+
+        .form-group
+          = label_tag :category, 'Select Category'
+          = select_tag :category, options_for_select({
+              'Candidate Loan' => 'candidate-loan',
+              'Contribution Total' => 'contribution-total',
+              'Debts Owed' => 'debts-owed',
+              'Disbursements Total' => 'disbursements-total',
+              'End Cash' => 'end-cash',
+              'Individual Total' => 'individual-total',
+              'PAC Total' => 'pac-total',
+              'Receipts Total' => 'receipts-total',
+              'Refund Total' => 'refund-total'
+            }), class: 'form-control'
+
+        = submit_tag 'Search', class: 'btn btn-primary mb-2'
