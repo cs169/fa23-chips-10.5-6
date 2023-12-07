@@ -21,4 +21,5 @@ class NewsItemsController < ApplicationController
   def set_news_item
     @news_item = NewsItem.find(params[:id])
   end
+
 end
