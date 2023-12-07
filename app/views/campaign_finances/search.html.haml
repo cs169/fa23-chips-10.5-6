@@ -1,3 +1,33 @@
--# This is the view that will dispay the campaign finance search results
-  campaign_finances#search makes available @campaign_finances which can be used
-   to display the table of results
+%h2 Search Results
+
+- if @campaign_finances.present?
+    %table.table
+        %thead
+            %tr
+                %th Name
+                %th= @category
+        %tbody
+        - @campaign_finances.each do |result|
+            %tr
+                %td #{result.first_name} #{result.last_name}
+                - case @category
+                - when 'candidate-loan'
+                    %td= result.candidate_loans
+                - when 'contribution-total'
+                    %td= result.total_contributions
+                - when 'debts-owed'
+                    %td= result.debts_owed
+                - when 'disbursements-total'
+                    %td= result.total_disbursements
+                - when 'end-cash'
+                    %td= result.end_cash
+                - when 'individual-total'
+                    %td= result.total_from_individuals
+                - when 'pac-total'
+                    %td= result.total_from_pacs
+                - when 'receipts-total'
+                    %td= result.total_receipts
+                - else
+                    %td= result.total_refunds
+- else
+    %p No results found.

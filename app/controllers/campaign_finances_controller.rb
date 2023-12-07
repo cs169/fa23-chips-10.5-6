@@ -8,8 +8,8 @@ class CampaignFinancesController < ApplicationController
 
   def search
     cycle = params[:cycle]
-    category = params[:category]
-    response = query_propublica_api(cycle, category)
+    @category = params[:category]
+    response = query_propublica_api(cycle, @category)
     results = response['results']
     @campaign_finances = CampaignFinance.propublica_api_to_campaign_finance_params(results)
     render 'campaign_finances/search'
