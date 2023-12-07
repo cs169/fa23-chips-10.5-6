@@ -18,4 +18,13 @@ Feature: News Item
     When I click the representative's name
     Then their profile page is displayed
 
-
+  Scenario: User can create a news item for a representative and edit
+    When I add a news article
+    Then I fill in the form
+    When I save the news item
+    Then the item should be displayed
+    When I follow "Edit"
+    Then I update the form
+    When I save the news item
+    Then I should see "News item was successfully updated."
+    Then I should see "Immigration"

@@ -34,6 +34,13 @@ Then(/^I fill in the form$/) do
   select 'Free Speech', from: 'news_item[issue]'
 end
 
+Then(/^I update the form$/) do
+  fill_in 'news_item[title]', with: 'Fundraising Biden'
+  fill_in 'news_item[link]', with: 'https://edition.cnn.com/2023/12/05/politics/biden-fundraising-sprint/index.html'
+  fill_in 'news_item[description]', with: 'Updated description'
+  select 'Immigration', from: 'news_item[issue]'
+end
+
 When(/^I save the news item$/) do
   click_button 'Save'
 end
