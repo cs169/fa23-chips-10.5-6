@@ -1,0 +1,15 @@
+%h2 Search Results
+
+- if @campaign_finances.present?
+  %table.table
+    %thead
+      %tr
+        %th Name
+        %th Category
+    %tbody
+      - @campaign_finances.each do |result|
+        %tr
+          %td= result['name']
+          %td= result['category']
+- else
+  %p No results found.
