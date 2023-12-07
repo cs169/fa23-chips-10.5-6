@@ -5,11 +5,28 @@
     %thead
       %tr
         %th Name
-        %th Category
+        %th @category
     %tbody
       - @campaign_finances.each do |result|
         %tr
-          %td= result['name']
-          %td= result['category']
+          %td= result.first_name
+          - if @category == 'candidate-loan'
+            %td= result.candidate_loans
+          - elsif @category == 'contribution-total'
+            %td= result.total_contributions
+          - elsif @category == 'debts-owed'
+            %td= result.debts_owed
+          - elsif @category == 'disbursements-total'
+            %td= result.total_disbursements
+          - elsif @category == 'end-cash'
+            %td= result.end_cash
+          - elsif @category == 'individual-total'
+            %td= result.total_from_individuals
+          - elsif @category == 'pac-total'
+            %td= result.total_from_pacs
+          - elsif @category == 'receipts-total'
+            %td= result.total_receipts
+          - else
+            %td= result.total_refunds
 - else
   %p No results found.
