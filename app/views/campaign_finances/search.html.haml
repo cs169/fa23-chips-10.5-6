@@ -10,23 +10,25 @@
       - @campaign_finances.each do |result|
         %tr
           %td= result.first_name + " " + result.last_name
-          - if @category == 'candidate-loan'
+          - case @category
+          - when 'candidate-loan'
             %td= result.candidate_loans
-          - elsif @category == 'contribution-total'
+          - when 'contribution-total'
             %td= result.total_contributions
-          - elsif @category == 'debts-owed'
+          - when 'debts-owed'
             %td= result.debts_owed
-          - elsif @category == 'disbursements-total'
+          - when 'disbursements-total'
             %td= result.total_disbursements
-          - elsif @category == 'end-cash'
+          - when 'end-cash'
             %td= result.end_cash
-          - elsif @category == 'individual-total'
+          - when 'individual-total'
             %td= result.total_from_individuals
-          - elsif @category == 'pac-total'
+          - when 'pac-total'
             %td= result.total_from_pacs
-          - elsif @category == 'receipts-total'
+          - when 'receipts-total'
             %td= result.total_receipts
           - else
             %td= result.total_refunds
 - else
   %p No results found.
+  
