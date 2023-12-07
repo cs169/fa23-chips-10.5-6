@@ -22,3 +22,8 @@ Then('I should be on the {string} page') do |page_name|
     raise "Unknown page name: #{page_name}"
   end
 end
+
+Then(/^I fill in the search form$/) do
+  select '2020', from: 'cycle'
+  select 'Debts Owed', from: 'category'
+end
