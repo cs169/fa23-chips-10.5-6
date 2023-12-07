@@ -9,6 +9,5 @@ Feature: Map
     Then I should see "National Map"
 
   Scenario: Correct county
-    When I click "CA" on national map
     When I click "Yolo County" on state map
     Then I should see "Yolo County Sheriff-Coroner"
