@@ -5,11 +5,11 @@
     %thead
       %tr
         %th Name
-        %th @category
+        %th= @category
     %tbody
       - @campaign_finances.each do |result|
         %tr
-          %td= result.first_name
+          %td= result.first_name + " " + result.last_name
           - if @category == 'candidate-loan'
             %td= result.candidate_loans
           - elsif @category == 'contribution-total'
