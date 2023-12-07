@@ -2,6 +2,7 @@ Feature: Campaign Finances
 
   Background:
     Given I am on the home page
+    Given I am logged in
     When I click the "Campaign Finances" link
     Then I should be on the campaign finances page
 
