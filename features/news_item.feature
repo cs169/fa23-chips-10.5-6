@@ -24,7 +24,12 @@ Feature: News Item
     When I save the news item
     Then the item should be displayed
     When I follow "Edit"
+    Then I should see "Edit news article"
     Then I update the form
     When I save the news item
     Then I should see "News item was successfully updated."
     Then I should see "Immigration"
+
+  Scenario: User can see all representatives
+    When I follow "All Representatives"
+    Then I should see "Search for a Representative"
